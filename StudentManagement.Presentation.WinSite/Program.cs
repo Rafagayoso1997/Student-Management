@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+using app = System.Windows.Forms.Application;
 
 namespace StudentManagement.Presentation.WinSite
 {
@@ -14,9 +14,9 @@ namespace StudentManagement.Presentation.WinSite
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            app.EnableVisualStyles();
+            app.SetCompatibleTextRenderingDefault(false);
+            app.Run(new frmStudent());
         }
     }
 }

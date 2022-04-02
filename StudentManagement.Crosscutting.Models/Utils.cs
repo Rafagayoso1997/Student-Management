@@ -17,5 +17,13 @@ namespace StudentManagement.Crosscutting.Models
 
             return Path.Combine(_desktopPath, ConfigurationManager.AppSettings[extension]);
         }
+
+        public static void DeleteIfExist(FileInfo file)
+        {
+            if (file.Exists)
+            {
+                file.Delete();
+            }
+        }
     }
 }

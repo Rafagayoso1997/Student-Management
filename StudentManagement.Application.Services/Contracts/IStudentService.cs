@@ -11,15 +11,15 @@ namespace StudentManagement.Application.Services.Contracts
     {
         void SetIRepositoryFactory(Factory factoryType);
 
-        IEnumerable<Student> GetAllStudents(string extension);
+        IEnumerable<Student> GetAllStudents(string path);
 
-        Student GetStudentById(int id);
+        Student GetStudentById(int id, string path);
 
-        void SaveStudent(Student student);
+        void SaveStudent(Student student, string path);
 
-        void UpdateStudent(Student student);
+        void UpdateStudent(Student student, string path);
 
-        void DeleteStudent(Student student);
+        void DeleteStudent(Student student, string path);
        
     }
 }

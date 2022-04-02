@@ -7,16 +7,17 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace StudentManagement.Presentation.WinSite
 {
-    public partial class Form1 : Form
+    public partial class frmAddStudent : Form
     {
         private IStudentService _service;
         private string _path;
-        public Form1(IStudentService service, string path)
+        public frmAddStudent(IStudentService service, string path)
         {
             _service = service;
             _path = path;
@@ -26,10 +27,28 @@ namespace StudentManagement.Presentation.WinSite
         private void button1_Click(object sender, EventArgs e)
         {
             Student studdent = new Student(int.Parse(idTextBox.Text),nameTextBox.Text, surnameTextBox.Text, 
-                DateTime.Parse(calendar.SelectionRange.Start.ToString()));
+               calendar.Value);
 
             _service.SaveStudent(studdent, _path);
             
+        }
+
+        private void idTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Verify that the pressed key isn't CTRL or any non-numeric digit
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) )
+            {
+                e.Handled = true;
+            }
+
+        }
+
+        private void nameTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && char.IsDigit(e.KeyChar) && (e.KeyChar.Equals('.')))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

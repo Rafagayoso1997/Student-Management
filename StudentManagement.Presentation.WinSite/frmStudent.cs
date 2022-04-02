@@ -62,13 +62,20 @@ namespace StudentManagement.Presentation.WinSite
             Factory factory = (Factory)comboFile.SelectedItem;
             var sd = factory.ToString();
             path = Utils.GetFilePath(sd);
-            new Form1(_service, path).ShowDialog();
+            new frmAddStudent(_service, path).ShowDialog();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             Student student = (Student)dataGridView1.CurrentRow.DataBoundItem;
             _service.DeleteStudent(student, path);
+            dataGridView1.DataSource = _service.GetAllStudents(path);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Student student = (Student)dataGridView1.CurrentRow.DataBoundItem;
+            _service.UpdateStudent(student, path);
             dataGridView1.DataSource = _service.GetAllStudents(path);
         }
     }

@@ -15,7 +15,7 @@ namespace StudentManagement.Infrastructure.Repositories.Contracts
         
         public List<Student> GetAllStudents(string path)
         {
-            List<Student> students = new List<Student>();
+            List<Student> students;
             using (var sr = new StreamReader(path, true))
             {
                 students = JsonConvert.DeserializeObject<List<Student>>(sr.ReadToEnd());
@@ -38,8 +38,6 @@ namespace StudentManagement.Infrastructure.Repositories.Contracts
             {
                 
                 students.Add(student);
-
-               
 
                 var json = JsonConvert.SerializeObject(students);
                 sw.Write(json);

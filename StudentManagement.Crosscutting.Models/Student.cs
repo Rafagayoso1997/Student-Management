@@ -3,17 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace StudentManagement.Crosscutting.Models
-{
+{   
+    [XmlRoot]
     public class Student
     {
         
         public Guid Guid { get; set; }
+
+        [XmlElement]
         public int Id { get; set; }
+        [XmlElement]
         public string Name { get; set; }
+        [XmlElement]
         public string Surname { get; set; }
+        [XmlElement]
         public DateTime BirthDate { get; set; }
+        [XmlElement]
         public int Age { get; set; }
 
         public Student()
@@ -26,7 +34,7 @@ namespace StudentManagement.Crosscutting.Models
             Id = id;
             Name = name;
             Surname = surname;
-            BirthDate = birthDate;
+            BirthDate = DateTime.Parse(birthDate.ToShortDateString());
             Age = CalculateAge();
         }
 

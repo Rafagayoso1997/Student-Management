@@ -18,7 +18,7 @@ namespace StudentManagement.Presentation.WinSite
         {
             app.EnableVisualStyles();
             app.SetCompatibleTextRenderingDefault(false);
-            app.Run(new frmStudent(new StudentService(new JsonRepositoryFactory())));
+            app.Run(new frmStudent(new StudentService(new TxtRepositoryFactory())));
         }
     }
 }

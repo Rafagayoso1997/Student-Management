@@ -15,6 +15,7 @@ namespace StudentManagement.Presentation.WinSite
     public partial class frmStudent : Form
     {
         private IStudentService _service;
+        private string path;
 
         public frmStudent(IStudentService service)
         {
@@ -25,8 +26,13 @@ namespace StudentManagement.Presentation.WinSite
         private void indexChange(object sender, EventArgs e)
         {
             ComboBox combo = (ComboBox)sender;
-            MessageBox.Show($"{Factory.TXT == (Factory)combo.SelectedItem }");
-           ;
+           
+            Factory factory = (Factory)combo.SelectedItem;
+            var sd = factory.ToString();
+
+            _service.SetIRepositoryFactory(factory);
+            var path = Utils.GetFilePath(sd);
+            dataGridView1.DataSource = _service.GetAllStudents(path);
         }
 
         private void frmStudent_Load(object sender, EventArgs e)
@@ -36,12 +42,20 @@ namespace StudentManagement.Presentation.WinSite
                 comboFile.Items.Add(item);
             }
 
-            Factory factory = (Factory)comboFile.Items[0];
+            Factory factory = (Factory)comboFile.Items[2];
             var sd = factory.ToString();
             var path = Utils.GetFilePath(sd);
             dataGridView1.DataSource = _service.GetAllStudents(path);
             dataGridView1.Columns["Guid"].Visible = false;
             dataGridView1.Columns["Id"].Visible = false;
+        }
+
+        private void addBtn_Click(object sender, EventArgs e)
+        {
+            //Factory factory = (Factory)comboFile.Items[0];
+            //var sd = factory.ToString();
+            //var path = Utils.GetFilePath(sd);
+            //new Form1(_service, path).ShowDialog();
         }
     }
 }

@@ -31,6 +31,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.comboFile = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.addBtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -64,11 +65,22 @@
             this.dataGridView1.Size = new System.Drawing.Size(743, 419);
             this.dataGridView1.TabIndex = 1;
             // 
+            // addBtn
+            // 
+            this.addBtn.Location = new System.Drawing.Point(576, 528);
+            this.addBtn.Name = "addBtn";
+            this.addBtn.Size = new System.Drawing.Size(99, 39);
+            this.addBtn.TabIndex = 2;
+            this.addBtn.Text = "Add";
+            this.addBtn.UseVisualStyleBackColor = true;
+            this.addBtn.Click += new System.EventHandler(this.addBtn_Click);
+            // 
             // frmStudent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(788, 629);
+            this.Controls.Add(this.addBtn);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmStudent";
@@ -85,6 +97,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox comboFile;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button addBtn;
     }
 }
 

@@ -46,9 +46,10 @@ namespace StudentManagement.Presentation.WinSite
                 comboFile.Items.Add(item);
             }
 
-            Factory factory = (Factory)comboFile.Items[2];
-            var sd = factory.ToString();
-            path = Utils.GetFilePath(sd);
+            comboFile.SelectedItem = comboFile.Items[0];
+
+            
+            path = Utils.GetFilePath(Factory.JSON.ToString());
             dataGridView1.DataSource = _service.GetAllStudents(path);
             dataGridView1.Columns["Guid"].Visible = false;
             dataGridView1.Columns["Id"].Visible = false;
@@ -58,10 +59,10 @@ namespace StudentManagement.Presentation.WinSite
 
         private void addBtn_Click(object sender, EventArgs e)
         {
-            //Factory factory = (Factory)comboFile.Items[0];
-            //var sd = factory.ToString();
-            //var path = Utils.GetFilePath(sd);
-            //new Form1(_service, path).ShowDialog();
+            Factory factory = (Factory)comboFile.SelectedItem;
+            var sd = factory.ToString();
+            path = Utils.GetFilePath(sd);
+            new Form1(_service, path).ShowDialog();
         }
 
         private void button1_Click(object sender, EventArgs e)

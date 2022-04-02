@@ -59,5 +59,10 @@ namespace StudentManagement.Crosscutting.Models
             hashCode = hashCode * -1521134295 + Age.GetHashCode();
             return hashCode;
         }
+
+        public override string ToString()
+        {
+            return $"{Guid}, {Id}, {Name},{Surname}, {BirthDate.ToShortDateString()}, {Age}";
+        }
     }
 }

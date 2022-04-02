@@ -13,7 +13,7 @@ namespace StudentManagement.Infrastructure.Repositories.Contracts
     public class JsonRepository : IRepository
     {
         
-        public List<Student> GetAllStudents(string path)
+        public IEnumerable<Student> GetAllStudents(string path)
         {
             List<Student> students;
             using (var sr = new StreamReader(path, true))
@@ -31,7 +31,7 @@ namespace StudentManagement.Infrastructure.Repositories.Contracts
 
         public void SaveStudent(Student student, string path)
         {
-            List<Student> students = GetAllStudents(path);
+            List<Student> students = (List<Student>)GetAllStudents(path);
             Utils.DeleteIfExist(new FileInfo(path));
 
             using (var sw = new StreamWriter(path, true))
@@ -47,7 +47,7 @@ namespace StudentManagement.Infrastructure.Repositories.Contracts
 
         public void UpdateStudent(Student student, string path)
         {
-            List<Student> students = GetAllStudents(path);
+            List<Student> students = (List<Student>)GetAllStudents(path);
             Utils.DeleteIfExist(new FileInfo(path));
 
             using (var sw = new StreamWriter(path, true))
@@ -66,7 +66,7 @@ namespace StudentManagement.Infrastructure.Repositories.Contracts
 
         public void DeleteStudent(Student student, string path)
         {
-            List<Student> students = GetAllStudents(path);
+            List<Student> students = (List<Student>)GetAllStudents(path);
             Utils.DeleteIfExist(new FileInfo(path));
 
             using (var sw = new StreamWriter(path, true))

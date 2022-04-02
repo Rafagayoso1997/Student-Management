@@ -11,21 +11,21 @@ namespace StudentManagement.Infrastructure.Repositories.Contracts
 {
     public class JsonRepository : IRepository
     {
-
+        private IEnumerable<Student> _students;
         public IEnumerable<Student> GetAllStudents(string path)
         {
-            var students = new List<Student>();
+            _students = new List<Student>();
             using (var sr = new StreamReader(path, true))
             {
-                students = JsonConvert.DeserializeObject<List<Student>>(sr.ReadToEnd());
+                _students = JsonConvert.DeserializeObject<List<Student>>(sr.ReadToEnd());
             }
-            return students;
+            return _students;
 
         }
 
         public Student GetStudentById(int id)
         {
-            throw new NotImplementedException();
+            return _students.Where(x => x.Id == id).FirstOrDefault();
         }
 
         public void SaveStudent(Student student)

@@ -57,7 +57,23 @@ namespace StudentManagement.Infrastructure.Repositories.Contracts
 
         public void UpdateStudent(Student student, string path)
         {
-            throw new NotImplementedException();
+            List<Student> students = (List<Student>)GetAllStudents(path);
+
+            XmlSerializer writer =
+                new XmlSerializer(typeof(List<Student>));
+            Utils.DeleteIfExist(new FileInfo(path));
+
+            Student studentInList = students.FirstOrDefault(x => x.Id == student.Id);
+
+            int studentindex = students.IndexOf(studentInList);
+
+            students[studentindex] = student;
+
+            FileStream file = File.Create(path);
+
+            writer.Serialize(file, students);
+
+            file.Close();
         }
 
         public void DeleteStudent(Student student, string path)

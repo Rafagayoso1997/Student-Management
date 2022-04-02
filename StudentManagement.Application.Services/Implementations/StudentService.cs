@@ -47,25 +47,25 @@ namespace StudentManagement.Application.Services.Implementations
             
         }
 
-        public Student GetStudentById(int id)
+        public Student GetStudentById(int id, string path)
         {
-            return _repository.GetStudentById(id);
+            return _repository.GetStudentById(id, path);
         }
 
-        public void SaveStudent(Student student)
+        public void SaveStudent(Student student, string path)
         {
-            Utils.DeleteIfExist(new FileInfo(path));
-            _repository.SaveStudent(student);
+           
+            _repository.SaveStudent(student, path);
         }
 
-        public void UpdateStudent(Student student)
+        public void UpdateStudent(Student student, string path)
         {
-            _repository.UpdateStudent(student);
+            _repository.UpdateStudent(student, path);
         }
 
-        public void DeleteStudent(Student student)
+        public void DeleteStudent(Student student, string path)
         {
-            _repository.DeleteStudent(student);
+            _repository.DeleteStudent(student, path);
         }
 
         public void SetIRepositoryFactory(Factory factoryType)

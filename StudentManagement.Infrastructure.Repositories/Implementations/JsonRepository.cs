@@ -11,34 +11,41 @@ namespace StudentManagement.Infrastructure.Repositories.Contracts
 {
     public class JsonRepository : IRepository
     {
-        private IEnumerable<Student> _students;
+        
         public IEnumerable<Student> GetAllStudents(string path)
         {
-            _students = new List<Student>();
+            IEnumerable<Student> students = new List<Student>();
             using (var sr = new StreamReader(path, true))
             {
-                _students = JsonConvert.DeserializeObject<List<Student>>(sr.ReadToEnd());
+                students = JsonConvert.DeserializeObject<List<Student>>(sr.ReadToEnd());
             }
-            return _students;
+            return students;
 
         }
 
-        public Student GetStudentById(int id)
+        public Student GetStudentById(int id, string path)
         {
-            return _students.Where(x => x.Id == id).FirstOrDefault();
+            return GetAllStudents(path).Where(x => x.Id == id).FirstOrDefault();
         }
 
-        public void SaveStudent(Student student)
+        public void SaveStudent(Student student, string path)
+        {
+            using (var sw = new StreamWriter(path, true))
+            {
+                IEnumerable<Student> students  = GetAllStudents(path);
+                students.Append(student);
+                var json = JsonConvert.SerializeObject(students);
+                sw.Write(json);
+            }
+
+        }
+
+        public void UpdateStudent(Student student, string path)
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateStudent(Student student)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteStudent(Student student)
+        public void DeleteStudent(Student student, string path)
         {
             throw new NotImplementedException();
         }

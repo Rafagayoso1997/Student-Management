@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace StudentManagement.Application.Services.Implementations
 {
@@ -53,6 +54,7 @@ namespace StudentManagement.Application.Services.Implementations
 
         public void SaveStudent(Student student)
         {
+            Utils.DeleteIfExist(new FileInfo(path));
             _repository.SaveStudent(student);
         }
 

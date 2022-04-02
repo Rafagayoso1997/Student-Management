@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using StudentManagement.Crosscutting.Models;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,9 @@ namespace StudentManagement.Infrastructure.Repositories.Contracts
     public class JsonRepository : IRepository
     {
         
-        public IEnumerable<Student> GetAllStudents(string path)
+        public List<Student> GetAllStudents(string path)
         {
-            IEnumerable<Student> students = new List<Student>();
+            List<Student> students = new List<Student>();
             using (var sr = new StreamReader(path, true))
             {
                 students = JsonConvert.DeserializeObject<List<Student>>(sr.ReadToEnd());
@@ -30,10 +31,16 @@ namespace StudentManagement.Infrastructure.Repositories.Contracts
 
         public void SaveStudent(Student student, string path)
         {
+            List<Student> students = GetAllStudents(path);
+            Utils.DeleteIfExist(new FileInfo(path));
+
             using (var sw = new StreamWriter(path, true))
             {
-                IEnumerable<Student> students  = GetAllStudents(path);
+                
                 students.Append(student);
+
+               
+
                 var json = JsonConvert.SerializeObject(students);
                 sw.Write(json);
             }
@@ -42,7 +49,21 @@ namespace StudentManagement.Infrastructure.Repositories.Contracts
 
         public void UpdateStudent(Student student, string path)
         {
-            throw new NotImplementedException();
+            List<Student> students = GetAllStudents(path);
+            Utils.DeleteIfExist(new FileInfo(path));
+
+            using (var sw = new StreamWriter(path, true))
+            {
+
+                Student studentInList = students.FirstOrDefault(x => x.Id == student.Id);
+                
+                int studentindex = students.IndexOf(studentInList);
+
+                students[studentindex] = student;
+
+                var json = JsonConvert.SerializeObject(students);
+                sw.Write(json);
+            }
         }
 
         public void DeleteStudent(Student student, string path)

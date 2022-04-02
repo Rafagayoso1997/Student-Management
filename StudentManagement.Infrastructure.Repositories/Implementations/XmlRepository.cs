@@ -14,22 +14,22 @@ namespace StudentManagement.Infrastructure.Repositories.Contracts
             throw new NotImplementedException();
         }
 
-        public Student GetStudentById(int id)
+        public Student GetStudentById(int id, string path)
         {
             throw new NotImplementedException();
         }
 
-        public void SaveStudent(Student student)
+        public void SaveStudent(Student student, string path)
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateStudent(Student student)
+        public void UpdateStudent(Student student, string path)
         {
             throw new NotImplementedException();
         }
 
-        public void DeleteStudent(Student student)
+        public void DeleteStudent(Student student, string path)
         {
             throw new NotImplementedException();
         }

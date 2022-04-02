@@ -38,5 +38,26 @@ namespace StudentManagement.Crosscutting.Models
 
             return age;
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Student student &&
+                   Id == student.Id &&
+                   Name == student.Name &&
+                   Surname == student.Surname &&
+                   BirthDate == student.BirthDate &&
+                   Age == student.Age;
+        }
+
+        public override int GetHashCode()
+        {
+            int hashCode = 946127122;
+            hashCode = hashCode * -1521134295 + Id.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Name);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Surname);
+            hashCode = hashCode * -1521134295 + BirthDate.GetHashCode();
+            hashCode = hashCode * -1521134295 + Age.GetHashCode();
+            return hashCode;
+        }
     }
 }

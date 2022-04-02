@@ -30,7 +30,7 @@ namespace StudentManagement.Presentation.WinSite
                calendar.Value);
 
             _service.SaveStudent(studdent, _path);
-            
+
         }
 
         private void idTextBox_KeyPress(object sender, KeyPressEventArgs e)

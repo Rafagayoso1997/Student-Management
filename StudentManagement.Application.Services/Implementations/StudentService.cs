@@ -54,7 +54,10 @@ namespace StudentManagement.Application.Services.Implementations
 
         public void SaveStudent(Student student, string path)
         {
-           
+            if (student.Surname.StartsWith("a"))
+            {
+                Console.WriteLine("Error");
+            }
             _repository.SaveStudent(student, path);
         }
 

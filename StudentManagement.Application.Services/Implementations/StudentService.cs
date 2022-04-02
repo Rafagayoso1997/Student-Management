@@ -23,9 +23,27 @@ namespace StudentManagement.Application.Services.Implementations
             _repository = repositoryFactory.CreateRepository();
         }
 
-        public IEnumerable<Student> GetAllStudents()
+        public IEnumerable<Student> GetAllStudents(string path)
         {
-            return _repository.GetAllStudents();
+            IEnumerable<Student> students = null;
+            try
+            {
+                students = _repository.GetAllStudents(path);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if(students == null)
+                {
+                    students = new List<Student>();
+                }
+            }
+
+            return students;
+            
         }
 
         public Student GetStudentById(int id)

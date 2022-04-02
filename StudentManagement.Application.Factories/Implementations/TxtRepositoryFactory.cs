@@ -1,5 +1,6 @@
 ﻿using StudentManagement.Application.Factories.Contracts;
 using StudentManagement.Infrastructure.Repositories;
+using StudentManagement.Infrastructure.Repositories.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace StudentManagement.Application.Factories.Implementations
     {
         public IRepository CreateRepository()
         {
-            throw new NotImplementedException();
+            return new TxtRepository();
         }
     }
 }

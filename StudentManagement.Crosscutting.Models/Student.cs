@@ -21,7 +21,7 @@ namespace StudentManagement.Crosscutting.Models
             Guid = Guid.NewGuid();
         }
 
-        public Student(int id, string name, string surname, DateTime birthDate)
+        public Student(int id, string name, string surname, DateTime birthDate) : this()
         {
             Id = id;
             Name = name;

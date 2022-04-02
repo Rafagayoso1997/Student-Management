@@ -37,7 +37,7 @@ namespace StudentManagement.Infrastructure.Repositories.Contracts
             using (var sw = new StreamWriter(path, true))
             {
                 
-                students.Append(student);
+                students.Add(student);
 
                
 

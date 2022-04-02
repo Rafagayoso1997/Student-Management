@@ -9,7 +9,7 @@ namespace StudentManagement.Infrastructure.Repositories.Contracts
 {
     public class XmlRepository : IRepository
     {
-        public IEnumerable<Student> GetAllStudents(string path)
+        public List<Student> GetAllStudents(string path)
         {
             throw new NotImplementedException();
         }

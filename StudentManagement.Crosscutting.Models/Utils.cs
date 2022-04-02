@@ -1,6 +1,8 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -10,7 +12,7 @@ namespace StudentManagement.Crosscutting.Models
 {
     public static class Utils
     {
-        
+
         public static string GetFilePath(string extension)
         {
             string _desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
@@ -24,6 +26,15 @@ namespace StudentManagement.Crosscutting.Models
             {
                 file.Delete();
             }
+        }
+
+        public static Student mapStudentFromTextToList(string student)
+        {
+            string [] spllitedData = student.Split(',');
+            Student studentsMapped = new Student(int.Parse(spllitedData[0]), spllitedData[1], spllitedData[2], 
+                DateTime.Parse(spllitedData[3]));
+
+            return studentsMapped;
         }
     }
 }

@@ -1,5 +1,8 @@
-﻿using StudentManagement.Application.Factories.Implementations;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Serilog;
+using StudentManagement.Application.Factories.Implementations;
 using StudentManagement.Application.Services.Implementations;
+using StudentManagement.Crosscutting.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +19,31 @@ namespace StudentManagement.Presentation.WinSite
         [STAThread]
         static void Main()
         {
+            Log.Logger = Initializer.GetLogger();
+            Log.Logger.Information("Open Program");
+            DefaultInitRuns();
+
+            RunWinForms();     
+        }
+
+        private static void RunWinForms()
+        {
+            using (var host = Initializer.CreateDefaultBuilder().Build())
+            {
+                using (IServiceScope serviceScope = host.Services.CreateScope())
+                {
+
+                    IServiceProvider provider = serviceScope.ServiceProvider;
+                    var formInstance = provider.GetRequiredService<frmStudent>();
+                    app.Run(formInstance);
+                }
+            }
+        }
+
+        private static void DefaultInitRuns()
+        {
             app.EnableVisualStyles();
             app.SetCompatibleTextRenderingDefault(false);
-            app.Run(new frmStudent(new StudentService(new TxtRepositoryFactory())));
         }
     }
 }

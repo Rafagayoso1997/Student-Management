@@ -1,4 +1,5 @@
-﻿using StudentManagement.Application.Services.Contracts;
+﻿using Microsoft.Extensions.Logging;
+using StudentManagement.Application.Services.Contracts;
 using StudentManagement.Crosscutting.Models;
 using System;
 using System.Collections.Generic;
@@ -14,11 +15,14 @@ namespace StudentManagement.Presentation.WinSite
 {
     public partial class frmStudent : Form
     {
-        private IStudentService _service;
+        private readonly IStudentService _service;
+        private readonly ILogger<frmStudent> _logger;
+
         private string path;
 
-        public frmStudent(IStudentService service)
+        public frmStudent(IStudentService service, ILogger<frmStudent> logger)
         {
+            _logger = logger;
             _service = service;
             InitializeComponent();
         }
@@ -31,7 +35,7 @@ namespace StudentManagement.Presentation.WinSite
             var sd = factory.ToString();
 
             _service.SetIRepositoryFactory(factory);
-            var path = Utils.GetFilePath(sd);
+            path = Utils.GetFilePath(sd);
             dataGridView1.DataSource = _service.GetAllStudents(path);
         }
 
@@ -44,10 +48,12 @@ namespace StudentManagement.Presentation.WinSite
 
             Factory factory = (Factory)comboFile.Items[2];
             var sd = factory.ToString();
-            var path = Utils.GetFilePath(sd);
+            path = Utils.GetFilePath(sd);
             dataGridView1.DataSource = _service.GetAllStudents(path);
             dataGridView1.Columns["Guid"].Visible = false;
             dataGridView1.Columns["Id"].Visible = false;
+
+
         }
 
         private void addBtn_Click(object sender, EventArgs e)
@@ -56,6 +62,13 @@ namespace StudentManagement.Presentation.WinSite
             //var sd = factory.ToString();
             //var path = Utils.GetFilePath(sd);
             //new Form1(_service, path).ShowDialog();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Student student = (Student)dataGridView1.CurrentRow.DataBoundItem;
+            _service.DeleteStudent(student, path);
+            dataGridView1.DataSource = _service.GetAllStudents(path);
         }
     }
 }

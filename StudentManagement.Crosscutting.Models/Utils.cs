@@ -1,4 +1,9 @@
 ﻿using AutoMapper;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Serilog;
+using Serilog.Core;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -17,7 +22,7 @@ namespace StudentManagement.Crosscutting.Models
         {
             string _desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
-            return Path.Combine(_desktopPath, ConfigurationManager.AppSettings[extension]);
+            return Path.Combine(_desktopPath, System.Configuration.ConfigurationManager.AppSettings[extension]);
         }
 
         public static void DeleteIfExist(FileInfo file)
@@ -36,5 +41,6 @@ namespace StudentManagement.Crosscutting.Models
 
             return studentsMapped;
         }
+
     }
 }

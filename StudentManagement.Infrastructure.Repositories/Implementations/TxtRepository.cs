@@ -12,17 +12,14 @@ namespace StudentManagement.Infrastructure.Repositories.Contracts
     {
         public List<Student> GetAllStudents(string path)
         {
-
             return File.ReadAllLines(path)
                     .Select(line => Utils.mapStudentFromTextToList(line))
                     .ToList();
-            //<Student> students = Utils.mapStudentFromTextToList(lines);
-             
         }
 
         public Student GetStudentById(int id, string path)
         {
-            throw new NotImplementedException();
+            return GetAllStudents(path).Where(x => x.Id == id).FirstOrDefault();
         }
 
         public void SaveStudent(Student student, string path)

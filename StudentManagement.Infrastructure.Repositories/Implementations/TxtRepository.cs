@@ -10,7 +10,7 @@ namespace StudentManagement.Infrastructure.Repositories.Contracts
 {
     public class TxtRepository : IRepository
     {
-        public List<Student> GetAllStudents(string path)
+        public IEnumerable<Student> GetAllStudents(string path)
         {
             return File.ReadAllLines(path)
                     .Select(line => Utils.mapStudentFromTextToList(line))
@@ -24,7 +24,7 @@ namespace StudentManagement.Infrastructure.Repositories.Contracts
 
         public void SaveStudent(Student student, string path)
         {
-            List<Student> students = GetAllStudents(path);
+            List<Student> students = (List<Student>)GetAllStudents(path);
             Utils.DeleteIfExist(new FileInfo(path));
 
             students.Add(student);
@@ -35,7 +35,7 @@ namespace StudentManagement.Infrastructure.Repositories.Contracts
 
         public void UpdateStudent(Student student, string path)
         {
-            List<Student> students = GetAllStudents(path);
+            List<Student> students = (List<Student>)GetAllStudents(path);
             Utils.DeleteIfExist(new FileInfo(path));
 
             Student studentInList = students.FirstOrDefault(x => x.Id == student.Id);
@@ -50,7 +50,7 @@ namespace StudentManagement.Infrastructure.Repositories.Contracts
 
         public void DeleteStudent(Student student, string path)
         {
-            List<Student> students = GetAllStudents(path);
+            List<Student> students = (List<Student>)GetAllStudents(path);
             Utils.DeleteIfExist(new FileInfo(path));
 
 

@@ -12,7 +12,7 @@ namespace StudentManagement.Infrastructure.Repositories.Contracts
 {
     public class XmlRepository : IRepository
     {
-        public List<Student> GetAllStudents(string path)
+        public IEnumerable<Student> GetAllStudents(string path)
         {
 
             var doc = XDocument.Load(path);
@@ -36,12 +36,23 @@ namespace StudentManagement.Infrastructure.Repositories.Contracts
 
         public Student GetStudentById(int id, string path)
         {
-            throw new NotImplementedException();
+            return GetAllStudents(path).Where(x => x.Id == id).FirstOrDefault(); ;
         }
 
         public void SaveStudent(Student student, string path)
         {
-            throw new NotImplementedException();
+
+            List<Student> students = (List<Student>)GetAllStudents(path);
+            XmlSerializer writer =
+                new XmlSerializer(typeof(List<Student>));
+            Utils.DeleteIfExist(new FileInfo(path));
+
+            students.Add(student);
+            FileStream file = File.Create(path);
+
+            writer.Serialize(file, students);
+            
+            file.Close();
         }
 
         public void UpdateStudent(Student student, string path)

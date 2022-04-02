@@ -68,7 +68,19 @@ namespace StudentManagement.Infrastructure.Repositories.Contracts
 
         public void DeleteStudent(Student student, string path)
         {
-            throw new NotImplementedException();
+            List<Student> students = GetAllStudents(path);
+            Utils.DeleteIfExist(new FileInfo(path));
+
+            using (var sw = new StreamWriter(path, true))
+            {
+
+                Student studentInList = students.FirstOrDefault(x => x.Id == student.Id);
+
+                students.Remove(studentInList);
+
+                var json = JsonConvert.SerializeObject(students);
+                sw.Write(json);
+            }
         }
 
     }

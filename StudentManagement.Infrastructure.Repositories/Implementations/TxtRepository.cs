@@ -24,7 +24,13 @@ namespace StudentManagement.Infrastructure.Repositories.Contracts
 
         public void SaveStudent(Student student, string path)
         {
-            throw new NotImplementedException();
+            List<Student> students = GetAllStudents(path);
+            Utils.DeleteIfExist(new FileInfo(path));
+
+            students.Add(student);
+
+            File.WriteAllLines(path,
+                students.Select(st => st.ToString()), Encoding.UTF8);
         }
 
         public void UpdateStudent(Student student, string path)

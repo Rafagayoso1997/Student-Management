@@ -36,11 +36,14 @@ namespace StudentManagement.Crosscutting.Models
         public static Student mapStudentFromTextToList(string student)
         {
             string [] spllitedData = student.Split(',');
-            Student studentsMapped = new Student(int.Parse(spllitedData[0]), spllitedData[1], spllitedData[2], 
-                DateTime.Parse(spllitedData[3]));
+            Student studentsMapped = new Student(int.Parse(spllitedData[1]), spllitedData[2], spllitedData[3], 
+                DateTime.Parse(spllitedData[4]));
+            studentsMapped.Guid = Guid.Parse(spllitedData[0]);
 
             return studentsMapped;
         }
+
+       
 
     }
 }

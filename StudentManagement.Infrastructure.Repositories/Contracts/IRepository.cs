@@ -5,7 +5,7 @@ namespace StudentManagement.Infrastructure.Repositories
 {
     public interface IRepository
     {
-        IEnumerable<Student> GetAllStudents();
+        IEnumerable<Student> GetAllStudents(string path);
 
         Student GetStudentById(int id);
 

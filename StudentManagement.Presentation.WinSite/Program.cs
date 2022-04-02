@@ -1,4 +1,6 @@
-﻿using System;
+﻿using StudentManagement.Application.Factories.Implementations;
+using StudentManagement.Application.Services.Implementations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +18,7 @@ namespace StudentManagement.Presentation.WinSite
         {
             app.EnableVisualStyles();
             app.SetCompatibleTextRenderingDefault(false);
-            app.Run(new frmStudent());
+            app.Run(new frmStudent(new StudentService(new JsonRepositoryFactory())));
         }
     }
 }

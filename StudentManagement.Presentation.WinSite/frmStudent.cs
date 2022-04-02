@@ -16,8 +16,9 @@ namespace StudentManagement.Presentation.WinSite
     {
         private IStudentService _service;
 
-        public frmStudent()
+        public frmStudent(IStudentService service)
         {
+            _service = service;
             InitializeComponent();
         }
 
@@ -34,6 +35,13 @@ namespace StudentManagement.Presentation.WinSite
             {
                 comboFile.Items.Add(item);
             }
+
+            Factory factory = (Factory)comboFile.Items[0];
+            var sd = factory.ToString();
+            var path = Utils.GetFilePath(sd);
+            dataGridView1.DataSource = _service.GetAllStudents(path);
+            dataGridView1.Columns["Guid"].Visible = false;
+            dataGridView1.Columns["Id"].Visible = false;
         }
     }
 }

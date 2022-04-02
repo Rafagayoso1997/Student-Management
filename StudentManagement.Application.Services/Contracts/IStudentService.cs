@@ -11,7 +11,7 @@ namespace StudentManagement.Application.Services.Contracts
     {
         void SetIRepositoryFactory(Factory factoryType);
 
-        IEnumerable<Student> GetAllStudents();
+        IEnumerable<Student> GetAllStudents(string extension);
 
         Student GetStudentById(int id);
 

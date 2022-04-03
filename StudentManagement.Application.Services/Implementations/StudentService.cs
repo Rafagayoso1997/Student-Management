@@ -24,6 +24,12 @@ namespace StudentManagement.Application.Services.Implementations
             _repository = repositoryFactory.CreateRepository();
         }
 
+        public StudentService(IRepository repository)
+        {
+            
+            _repository = repository;
+        }
+
         public IEnumerable<Student> GetAllStudents(string path)
         {
             IEnumerable<Student> students = null;
@@ -52,19 +58,19 @@ namespace StudentManagement.Application.Services.Implementations
             return _repository.GetStudentById(id, path);
         }
 
-        public void SaveStudent(Student student, string path)
+        public bool SaveStudent(Student student, string path)
         {
-            _repository.SaveStudent(student, path);
+           return _repository.SaveStudent(student, path);
         }
 
-        public void UpdateStudent(Student student, string path)
+        public bool UpdateStudent(Student student, string path)
         {
-            _repository.UpdateStudent(student, path);
+            return _repository.UpdateStudent(student, path);
         }
 
-        public void DeleteStudent(Student student, string path)
+        public bool DeleteStudent(Student student, string path)
         {
-            _repository.DeleteStudent(student, path);
+            return _repository.DeleteStudent(student, path);
         }
 
         public void SetIRepositoryFactory(Factory factoryType)

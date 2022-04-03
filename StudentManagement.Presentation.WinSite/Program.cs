@@ -21,7 +21,8 @@ namespace StudentManagement.Presentation.WinSite
         {
             Log.Logger = Initializer.GetLogger();
             Log.Logger.Information("Open Program");
-            DefaultInitRuns();
+            app.EnableVisualStyles();
+            app.SetCompatibleTextRenderingDefault(false);
 
             RunWinForms();     
         }
@@ -40,10 +41,6 @@ namespace StudentManagement.Presentation.WinSite
             }
         }
 
-        private static void DefaultInitRuns()
-        {
-            app.EnableVisualStyles();
-            app.SetCompatibleTextRenderingDefault(false);
-        }
+
     }
 }

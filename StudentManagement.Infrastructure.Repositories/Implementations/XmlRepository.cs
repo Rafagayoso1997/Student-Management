@@ -29,9 +29,9 @@ namespace StudentManagement.Infrastructure.Repositories.Contracts
                 })
                 .ToList();
 
-           
-          return students;
-           
+
+            return students == null ? new List<Student>() : students;
+
         }
 
         public Student GetStudentById(int id, string path)
@@ -39,8 +39,9 @@ namespace StudentManagement.Infrastructure.Repositories.Contracts
             return GetAllStudents(path).Where(x => x.Id == id).FirstOrDefault(); ;
         }
 
-        public void SaveStudent(Student student, string path)
+        public bool SaveStudent(Student student, string path)
         {
+            bool inserted = false;
 
             List<Student> students = (List<Student>)GetAllStudents(path);
             XmlSerializer writer =
@@ -48,15 +49,22 @@ namespace StudentManagement.Infrastructure.Repositories.Contracts
             Utils.DeleteIfExist(new FileInfo(path));
 
             students.Add(student);
+            if (students.Contains(student))
+                inserted = true;
+
             FileStream file = File.Create(path);
 
             writer.Serialize(file, students);
             
             file.Close();
+
+            return inserted;
         }
 
-        public void UpdateStudent(Student student, string path)
+        public bool UpdateStudent(Student student, string path)
         {
+            bool updated = false;
+
             List<Student> students = (List<Student>)GetAllStudents(path);
 
             XmlSerializer writer =
@@ -69,14 +77,18 @@ namespace StudentManagement.Infrastructure.Repositories.Contracts
 
             students[studentindex] = student;
 
+            if (students.Contains(student))
+                updated = true;
+
             FileStream file = File.Create(path);
 
             writer.Serialize(file, students);
 
             file.Close();
+            return updated;
         }
 
-        public void DeleteStudent(Student student, string path)
+        public bool DeleteStudent(Student student, string path)
         {
             List<Student> students = (List<Student>)GetAllStudents(path);
 
@@ -86,13 +98,15 @@ namespace StudentManagement.Infrastructure.Repositories.Contracts
 
             Student studentInList = students.FirstOrDefault(x => x.Id == student.Id);
 
-            students.Remove(studentInList);
+            bool removed = students.Remove(studentInList);
                 
             FileStream file = File.Create(path);
 
             writer.Serialize(file, students);
 
             file.Close();
+
+            return removed;
         }
 
     }

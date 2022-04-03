@@ -33,6 +33,16 @@ namespace StudentManagement.Crosscutting.Models
             }
         }
 
+        public static void CreateIfDoesntExist(string path)
+        {
+            FileInfo file = new FileInfo(path);
+            if (!file.Exists)
+            {
+                file.Create();
+                
+            }
+        }
+
         public static Student mapStudentFromTextToList(string student)
         {
             string [] spllitedData = student.Split(',');

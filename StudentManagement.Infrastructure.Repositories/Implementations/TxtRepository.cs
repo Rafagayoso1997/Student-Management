@@ -12,9 +12,11 @@ namespace StudentManagement.Infrastructure.Repositories.Contracts
     {
         public IEnumerable<Student> GetAllStudents(string path)
         {
-            return File.ReadAllLines(path)
+             List<Student> students = File.ReadAllLines(path)
                     .Select(line => Utils.mapStudentFromTextToList(line))
                     .ToList();
+
+            return students == null ? new List<Student>() : students;
         }
 
         public Student GetStudentById(int id, string path)
@@ -22,19 +24,26 @@ namespace StudentManagement.Infrastructure.Repositories.Contracts
             return GetAllStudents(path).FirstOrDefault(x => x.Id == id);
         }
 
-        public void SaveStudent(Student student, string path)
+        public bool SaveStudent(Student student, string path)
         {
+            bool inserted = false;
             List<Student> students = (List<Student>)GetAllStudents(path);
             Utils.DeleteIfExist(new FileInfo(path));
 
             students.Add(student);
+            if(students.Contains(student))
+                inserted = true;    
 
             File.WriteAllLines(path,
                 students.Select(st => st.ToString()), Encoding.UTF8);
+
+            return inserted;
         }
 
-        public void UpdateStudent(Student student, string path)
+        public bool UpdateStudent(Student student, string path)
         {
+            bool updated = false;
+
             List<Student> students = (List<Student>)GetAllStudents(path);
             Utils.DeleteIfExist(new FileInfo(path));
 
@@ -44,12 +53,18 @@ namespace StudentManagement.Infrastructure.Repositories.Contracts
 
             students[studentindex] = student;
 
+            if(students.Contains(student))
+                updated = true;
+
             File.WriteAllLines(path,
                  students.Select(st => st.ToString()), Encoding.UTF8);
+
+            return updated;
         }
 
-        public void DeleteStudent(Student student, string path)
+        public bool DeleteStudent(Student student, string path)
         {
+            
             List<Student> students = (List<Student>)GetAllStudents(path);
             Utils.DeleteIfExist(new FileInfo(path));
 
@@ -57,10 +72,14 @@ namespace StudentManagement.Infrastructure.Repositories.Contracts
 
             Student studentInList = students.FirstOrDefault(x => x.Id == student.Id);
 
-            students.Remove(studentInList);
+            bool removed = students.Remove(studentInList);
+
+           
 
             File.WriteAllLines(path,
                  students.Select(st => st.ToString()), Encoding.UTF8);
+
+            return removed;
 
         }
 

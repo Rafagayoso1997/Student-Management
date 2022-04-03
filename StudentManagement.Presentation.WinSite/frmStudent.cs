@@ -30,7 +30,7 @@ namespace StudentManagement.Presentation.WinSite
         private void indexChange(object sender, EventArgs e)
         {
             ComboBox combo = (ComboBox)sender;
-           
+
             Factory factory = (Factory)combo.SelectedItem;
             var sd = factory.ToString();
 
@@ -48,8 +48,9 @@ namespace StudentManagement.Presentation.WinSite
 
             comboFile.SelectedItem = comboFile.Items[0];
 
-            
+
             path = Utils.GetFilePath(Factory.JSON.ToString());
+            Utils.CreateIfDoesntExist(path);
             dataGridView1.DataSource = _service.GetAllStudents(path);
             dataGridView1.Columns["Guid"].Visible = false;
             dataGridView1.Columns["Id"].Visible = false;
@@ -62,21 +63,36 @@ namespace StudentManagement.Presentation.WinSite
             Factory factory = (Factory)comboFile.SelectedItem;
             var sd = factory.ToString();
             path = Utils.GetFilePath(sd);
-            new frmAddStudent(_service, path).ShowDialog();
+            new frmAddStudent(_service, path, _logger).ShowDialog();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Student student = (Student)dataGridView1.CurrentRow.DataBoundItem;
-            _service.DeleteStudent(student, path);
-            dataGridView1.DataSource = _service.GetAllStudents(path);
+            try
+            {
+                Student student = (Student)dataGridView1.CurrentRow.DataBoundItem;
+                _service.DeleteStudent(student, path);
+                dataGridView1.DataSource = _service.GetAllStudents(path);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation(ex.Message);
+            }
+
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Student student = (Student)dataGridView1.CurrentRow.DataBoundItem;
-            _service.UpdateStudent(student, path);
-            dataGridView1.DataSource = _service.GetAllStudents(path);
+            try
+            {
+                Student student = (Student)dataGridView1.CurrentRow.DataBoundItem;
+                _service.UpdateStudent(student, path);
+                dataGridView1.DataSource = _service.GetAllStudents(path);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation(ex.Message);
+            }
         }
     }
 }

@@ -15,11 +15,11 @@ namespace StudentManagement.Application.Services.Contracts
 
         Student GetStudentById(int id, string path);
 
-        void SaveStudent(Student student, string path);
+        bool SaveStudent(Student student, string path);
 
-        void UpdateStudent(Student student, string path);
+        bool UpdateStudent(Student student, string path);
 
-        void DeleteStudent(Student student, string path);
+        bool DeleteStudent(Student student, string path);
        
     }
 }

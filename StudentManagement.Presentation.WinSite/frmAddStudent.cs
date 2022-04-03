@@ -19,11 +19,13 @@ namespace StudentManagement.Presentation.WinSite
         private IStudentService _service;
         private readonly ILogger<frmStudent> _logger;
         private string _path;
-        public frmAddStudent(IStudentService service, string path, ILogger<frmStudent> logger)
+        private DataGridView _grid;
+        public frmAddStudent(IStudentService service, string path, ILogger<frmStudent> logger, DataGridView grid)
         {
             _service = service;
             _path = path;
             _logger = logger;
+            _grid = grid;
             InitializeComponent();
         }
 
@@ -35,6 +37,9 @@ namespace StudentManagement.Presentation.WinSite
                 calendar.Value);
 
                 _service.SaveStudent(studdent, _path);
+                _grid.DataSource = _service.GetAllStudents(_path);
+                Button btn = (Button)sender;
+                this.Close();
             }
             catch (Exception ex)
             {

@@ -19,26 +19,15 @@ namespace StudentManagement.Application.Services.Implementations.Tests
     {
         private static StudentService _service;
 
-        private static Mock<IRepositoryFactory> mockRepositoryFactory;
         private static string path = @"C:\Users\Rafael Gayoso\OneDrive\Escritorio\students.json";
 
         [AssemblyInitialize]
         public static void AssemblyInit(TestContext context)
         {
-
-            mockRepositoryFactory = new Mock<IRepositoryFactory>();
-
-            mockRepositoryFactory.Setup(repositoryFactory => repositoryFactory.CreateRepository()).Returns(new JsonRepository());
-
-            _service = new StudentService(mockRepositoryFactory.Object);
+            _service = new StudentService(new JsonRepository());
         }
 
 
-        [TestMethod()]
-        public void GetAllStudentsTest()
-        {
-            Assert.Fail();
-        }
 
         [TestMethod()]
         public void GetStudentByIdTest()
@@ -61,25 +50,39 @@ namespace StudentManagement.Application.Services.Implementations.Tests
         [TestMethod()]
         public void SaveStudentTest()
         {
-            Assert.Fail();
+            Student student = new Student(17,"Rafa","Rafa", DateTime.Now);
+
+            bool result = _service.SaveStudent(student, path);
+
+            bool expectedresult = true;
+
+            Assert.AreEqual(expectedresult, result);
         }
 
         [TestMethod()]
         public void UpdateStudentTest()
         {
-            Assert.Fail();
+            Student student = new Student(6, "Rafa", "Rafa", DateTime.Now);
+
+            bool result = _service.UpdateStudent(student, path);
+
+            bool expectedresult = true;
+
+            Assert.AreEqual(expectedresult, result);
         }
 
         [TestMethod()]
         public void DeleteStudentTest()
         {
-            Assert.Fail();
+            Student student = new Student(17, "Rafa", "Rafa", DateTime.Now);
+
+            bool result = _service.DeleteStudent(student, path);
+
+            bool expectedresult = true;
+
+            Assert.AreEqual(expectedresult, result);
         }
 
-        [TestMethod()]
-        public void SetIRepositoryFactoryTest()
-        {
-            Assert.Fail();
-        }
+      
     }
 }

@@ -55,7 +55,6 @@ namespace StudentManagement.Presentation.WinSite
             dataGridView1.Columns["Guid"].Visible = false;
             dataGridView1.Columns["Id"].Visible = false;
 
-
         }
 
         private void addBtn_Click(object sender, EventArgs e)
@@ -63,7 +62,7 @@ namespace StudentManagement.Presentation.WinSite
             Factory factory = (Factory)comboFile.SelectedItem;
             var sd = factory.ToString();
             path = Utils.GetFilePath(sd);
-            new frmAddStudent(_service, path, _logger).ShowDialog();
+            new frmAddStudent(_service, path, _logger, dataGridView1).ShowDialog();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -94,5 +93,6 @@ namespace StudentManagement.Presentation.WinSite
                 _logger.LogInformation(ex.Message);
             }
         }
+
     }
 }

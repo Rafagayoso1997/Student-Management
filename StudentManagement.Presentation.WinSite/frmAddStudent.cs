@@ -33,12 +33,12 @@ namespace StudentManagement.Presentation.WinSite
         {
             try
             {
-                Student studdent = new Student(int.Parse(idTextBox.Text), nameTextBox.Text, surnameTextBox.Text,
+                long id = DateTime.Now.Ticks;
+                Student studdent = new Student(id, nameTextBox.Text, surnameTextBox.Text,
                 calendar.Value);
 
                 _service.SaveStudent(studdent, _path);
                 _grid.DataSource = _service.GetAllStudents(_path);
-                Button btn = (Button)sender;
                 this.Close();
             }
             catch (Exception ex)

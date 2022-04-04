@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Serilog;
-using StudentManagement.Application.Factories.Implementations;
 using StudentManagement.Application.Services.Implementations;
 using StudentManagement.Crosscutting.Models;
 using System;

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{19A38588-4DE5-4FEF-AB53-9A8C9CAEEB5B}</ProjectGuid>
+    <ProjectGuid>{99AC62D1-E3B6-4EC1-9764-BB48594E10CC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>StudentManagement.Application.Services</RootNamespace>
-    <AssemblyName>StudentManagement.Application.Services</AssemblyName>
+    <RootNamespace>StudentManagement.Crosscutting.Utilities</RootNamespace>
+    <AssemblyName>StudentManagement.Crosscutting.Utilities</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,22 +42,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\IStudentService.cs" />
-    <Compile Include="Implementations\StudentService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\StudentManagement.Application.Factories\StudentManagement.Application.Factories.csproj">
-      <Project>{9a46b0a8-2dea-4a59-9249-6a3a4a1efa5c}</Project>
-      <Name>StudentManagement.Application.Factories</Name>
-    </ProjectReference>
     <ProjectReference Include="..\StudentManagement.Crosscutting.Models\StudentManagement.Crosscutting.Models.csproj">
       <Project>{c2567fcd-c229-43fe-b5f2-a6281efdc365}</Project>
       <Name>StudentManagement.Crosscutting.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\StudentManagement.Infrastructure.Repositories\StudentManagement.Infrastructure.Repositories.csproj">
-      <Project>{18efa8da-30ea-434b-818a-c3adc084d75d}</Project>
-      <Name>StudentManagement.Infrastructure.Repositories</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

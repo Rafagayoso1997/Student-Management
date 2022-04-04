@@ -6,6 +6,7 @@ using StudentManagement.Crosscutting.Models;
 using StudentManagement.Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
+using System.IO.Abstractions;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,14 +20,15 @@ namespace StudentManagement.Application.Services.Implementations.Tests
 
         private static Mock<IRepository> mockRepository;
 
-        private static string path = @"C:\Users\Rafael Gayoso\OneDrive\Escritorio\students.json";
+        private static Mock<IFileSystem> _fileSystem;
 
-        [AssemblyInitialize]
+        
+
+        [ClassInitialize]
         public static void AssemblyInit(TestContext context)
         {
             mockRepository = new Mock<IRepository>();
-
-
+            
 
             mockRepository.Setup(repository => repository.GetStudentById(2, "")).Returns(UnitFixtures.GetStudentById(2));
             mockRepository.Setup(repository => repository.GetAllStudents("")).Returns(UnitFixtures.GetAllStudents());

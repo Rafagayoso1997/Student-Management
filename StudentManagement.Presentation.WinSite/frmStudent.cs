@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO.Abstractions;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,7 @@ namespace StudentManagement.Presentation.WinSite
     {
         private readonly IStudentService _service;
         private readonly ILogger<frmStudent> _logger;
+        
 
         private string path;
 
@@ -24,6 +26,7 @@ namespace StudentManagement.Presentation.WinSite
         {
             _logger = logger;
             _service = service;
+            
             InitializeComponent();
         }
 
@@ -41,19 +44,28 @@ namespace StudentManagement.Presentation.WinSite
 
         private void frmStudent_Load(object sender, EventArgs e)
         {
-            foreach (var item in Enum.GetValues(typeof(Factory)))
+            try
             {
-                comboFile.Items.Add(item);
+                foreach (var item in Enum.GetValues(typeof(Factory)))
+                {
+                    comboFile.Items.Add(item);
+                }
+
+                comboFile.SelectedItem = comboFile.Items[0];
+
+                path = Utils.GetFilePath(Factory.JSON.ToString());
+             
+                
+                Utils.CreateIfDoesntExist(path);
+                dataGridView1.DataSource = _service.GetAllStudents(path);
+                dataGridView1.Columns["Guid"].Visible = false;
+                dataGridView1.Columns["Id"].Visible = false;
             }
-
-            comboFile.SelectedItem = comboFile.Items[0];
-
-
-            path = Utils.GetFilePath(Factory.JSON.ToString());
-            Utils.CreateIfDoesntExist(path);
-            dataGridView1.DataSource = _service.GetAllStudents(path);
-            dataGridView1.Columns["Guid"].Visible = false;
-            dataGridView1.Columns["Id"].Visible = false;
+            catch (Exception ex)
+            {
+                _logger.LogInformation(ex.Message);
+                MessageBox.Show(ex.Message);
+            }
 
         }
 
@@ -76,6 +88,7 @@ namespace StudentManagement.Presentation.WinSite
             catch (Exception ex)
             {
                 _logger.LogInformation(ex.Message);
+                MessageBox.Show(ex.Message);
             }
 
         }
@@ -91,6 +104,7 @@ namespace StudentManagement.Presentation.WinSite
             catch (Exception ex)
             {
                 _logger.LogInformation(ex.Message);
+                MessageBox.Show(ex.Message);
             }
         }
 

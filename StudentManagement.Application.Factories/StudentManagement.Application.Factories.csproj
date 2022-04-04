@@ -41,17 +41,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\IRepositoryFactory.cs" />
-    <Compile Include="Implementations\JsonRepositoryFactory.cs" />
-    <Compile Include="Implementations\TxtRepositoryFactory.cs" />
-    <Compile Include="Implementations\XmlRepositoryFactory.cs" />
+    <Compile Include="Contracts\IAbstractRepositoryFactory.cs" />
+    <Compile Include="Implementations\FileRepositoryFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\StudentManagement.Crosscutting.Models\StudentManagement.Crosscutting.Models.csproj">
+      <Project>{C2567FCD-C229-43FE-B5F2-A6281EFDC365}</Project>
+      <Name>StudentManagement.Crosscutting.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\StudentManagement.Infrastructure.Repositories\StudentManagement.Infrastructure.Repositories.csproj">
       <Project>{18efa8da-30ea-434b-818a-c3adc084d75d}</Project>
       <Name>StudentManagement.Infrastructure.Repositories</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.IO.Abstractions">
+      <Version>16.1.25</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

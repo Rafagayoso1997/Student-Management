@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentManagement.Applicati
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentManagement.Application.Services.Unit.Tests", "StudentManagement.Application.Services.Unit.Tests\StudentManagement.Application.Services.Unit.Tests.csproj", "{AE935344-34F4-48CE-AE66-5C26A541461B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentManagement.Crosscutting.Utilities", "StudentManagement.Crosscutting.Utilities\StudentManagement.Crosscutting.Utilities.csproj", "{99AC62D1-E3B6-4EC1-9764-BB48594E10CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,10 @@ Global
 		{AE935344-34F4-48CE-AE66-5C26A541461B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE935344-34F4-48CE-AE66-5C26A541461B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE935344-34F4-48CE-AE66-5C26A541461B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99AC62D1-E3B6-4EC1-9764-BB48594E10CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99AC62D1-E3B6-4EC1-9764-BB48594E10CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99AC62D1-E3B6-4EC1-9764-BB48594E10CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99AC62D1-E3B6-4EC1-9764-BB48594E10CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,7 +74,8 @@ Global
 		{19A38588-4DE5-4FEF-AB53-9A8C9CAEEB5B} = {63684637-7D2E-42AD-8EF2-3B93AC6D1CC3}
 		{C2567FCD-C229-43FE-B5F2-A6281EFDC365} = {E40A406E-9185-4938-BADA-15173199FE28}
 		{18EFA8DA-30EA-434B-818A-C3ADC084D75D} = {95AFD37C-116B-45FA-BE93-DC58375F4AA3}
-		{9A46B0A8-2DEA-4A59-9249-6A3A4A1EFA5C} = {63684637-7D2E-42AD-8EF2-3B93AC6D1CC3}
+		{9A46B0A8-2DEA-4A59-9249-6A3A4A1EFA5C} = {95AFD37C-116B-45FA-BE93-DC58375F4AA3}
+		{99AC62D1-E3B6-4EC1-9764-BB48594E10CC} = {E40A406E-9185-4938-BADA-15173199FE28}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8A7AD726-2AA3-4FCC-9089-0D2CD6EFD545}

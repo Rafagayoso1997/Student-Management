@@ -29,11 +29,9 @@
         private void InitializeComponent()
         {
             this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.idTextBox = new System.Windows.Forms.TextBox();
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.surnameTextBox = new System.Windows.Forms.TextBox();
             this.calendar = new System.Windows.Forms.DateTimePicker();
@@ -41,7 +39,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(212, 292);
+            this.button1.Location = new System.Drawing.Point(210, 220);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(201, 48);
             this.button1.TabIndex = 0;
@@ -49,19 +47,10 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(53, 90);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(23, 20);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Id";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(52, 136);
+            this.label2.Location = new System.Drawing.Point(53, 70);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 20);
             this.label2.TabIndex = 2;
@@ -70,7 +59,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(53, 178);
+            this.label3.Location = new System.Drawing.Point(54, 112);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(74, 20);
             this.label3.TabIndex = 3;
@@ -79,23 +68,15 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(53, 230);
+            this.label4.Location = new System.Drawing.Point(54, 164);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(77, 20);
             this.label4.TabIndex = 4;
             this.label4.Text = "BirthDate";
             // 
-            // idTextBox
-            // 
-            this.idTextBox.Location = new System.Drawing.Point(193, 80);
-            this.idTextBox.Name = "idTextBox";
-            this.idTextBox.Size = new System.Drawing.Size(251, 26);
-            this.idTextBox.TabIndex = 5;
-            this.idTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.idTextBox_KeyPress);
-            // 
             // nameTextBox
             // 
-            this.nameTextBox.Location = new System.Drawing.Point(193, 136);
+            this.nameTextBox.Location = new System.Drawing.Point(194, 70);
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(251, 26);
             this.nameTextBox.TabIndex = 6;
@@ -103,7 +84,7 @@
             // 
             // surnameTextBox
             // 
-            this.surnameTextBox.Location = new System.Drawing.Point(193, 178);
+            this.surnameTextBox.Location = new System.Drawing.Point(194, 112);
             this.surnameTextBox.Name = "surnameTextBox";
             this.surnameTextBox.Size = new System.Drawing.Size(251, 26);
             this.surnameTextBox.TabIndex = 7;
@@ -113,7 +94,7 @@
             // 
             this.calendar.CustomFormat = "dd/MM/yyyy";
             this.calendar.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.calendar.Location = new System.Drawing.Point(193, 230);
+            this.calendar.Location = new System.Drawing.Point(194, 164);
             this.calendar.Name = "calendar";
             this.calendar.Size = new System.Drawing.Size(251, 26);
             this.calendar.TabIndex = 9;
@@ -123,15 +104,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(555, 370);
+            this.ClientSize = new System.Drawing.Size(555, 290);
             this.Controls.Add(this.calendar);
             this.Controls.Add(this.surnameTextBox);
             this.Controls.Add(this.nameTextBox);
-            this.Controls.Add(this.idTextBox);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Name = "frmAddStudent";
             this.Text = "Form1";
@@ -143,11 +122,9 @@
         #endregion
 
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox idTextBox;
         private System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.TextBox surnameTextBox;
         private System.Windows.Forms.DateTimePicker calendar;

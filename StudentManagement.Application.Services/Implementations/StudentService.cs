@@ -22,7 +22,7 @@ namespace StudentManagement.Application.Services.Implementations
         public StudentService(IAbstractRepositoryFactory repositoryFactory, IFileSystem fileSystem)
         {
             _repositoryFactory = repositoryFactory;
-            _repository = repositoryFactory.CreateRepository(Factory.JSON);
+            _repository = repositoryFactory.CreateRepository(Factory.Json);
             _fileSystem = fileSystem;
         }
 

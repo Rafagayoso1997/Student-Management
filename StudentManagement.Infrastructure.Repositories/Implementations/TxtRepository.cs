@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StudentManagement.Infrastructure.Repositories.Contracts
+namespace StudentManagement.Infrastructure.Repositories.Implementations
 {
     public class TxtRepository : IRepository
     {

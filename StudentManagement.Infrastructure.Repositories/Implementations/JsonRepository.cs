@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StudentManagement.Infrastructure.Repositories.Contracts
+namespace StudentManagement.Infrastructure.Repositories.Implementations
 {
     public class JsonRepository : IRepository
     {
@@ -20,6 +20,7 @@ namespace StudentManagement.Infrastructure.Repositories.Contracts
             {
                 students = JsonConvert.DeserializeObject<List<Student>>(sr.ReadToEnd());
             }
+            string name = typeof(JsonRepository).AssemblyQualifiedName;
             return students == null ? new List<Student>() : students;
 
         }

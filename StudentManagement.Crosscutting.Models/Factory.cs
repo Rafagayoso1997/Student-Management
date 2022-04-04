@@ -8,8 +8,8 @@ namespace StudentManagement.Crosscutting.Models
 {
     public enum Factory
     {
-        JSON = 1,
-        XML,
-        TXT
+        Json,
+        Xml,
+        Txt
     }
 }

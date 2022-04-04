@@ -3,7 +3,7 @@ using Moq;
 using StudentManagement.Application.Factories.Contracts;
 using StudentManagement.Crosscutting.Models;
 using StudentManagement.Infrastructure.Repositories;
-using StudentManagement.Infrastructure.Repositories.Contracts;
+using StudentManagement.Infrastructure.Repositories.Implementations;
 using System;
 using System.Collections.Generic;
 using System.Configuration;

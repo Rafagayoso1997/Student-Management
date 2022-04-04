@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
-namespace StudentManagement.Infrastructure.Repositories.Contracts
+namespace StudentManagement.Infrastructure.Repositories.Implementations
 {
     public class XmlRepository : IRepository
     {

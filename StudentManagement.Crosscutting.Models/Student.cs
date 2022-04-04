@@ -14,7 +14,7 @@ namespace StudentManagement.Crosscutting.Models
         public Guid Guid { get; set; }
 
         [XmlElement]
-        public int Id { get; set; }
+        public long Id { get; set; }
         [XmlElement]
         public string Name { get; set; }
         [XmlElement]
@@ -29,7 +29,7 @@ namespace StudentManagement.Crosscutting.Models
             Guid = Guid.NewGuid();
         }
 
-        public Student(int id, string name, string surname, DateTime birthDate) : this()
+        public Student(long id, string name, string surname, DateTime birthDate) : this()
         {
             Id = id;
             Name = name;

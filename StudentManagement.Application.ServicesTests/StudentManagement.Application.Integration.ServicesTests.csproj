@@ -76,6 +76,9 @@
     <PackageReference Include="Moq">
       <Version>4.17.2</Version>
     </PackageReference>
+    <PackageReference Include="System.IO.Abstractions">
+      <Version>16.1.25</Version>
+    </PackageReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

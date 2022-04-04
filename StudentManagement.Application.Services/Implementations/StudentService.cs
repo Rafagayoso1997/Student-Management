@@ -1,7 +1,6 @@
 ﻿
 using StudentManagement.Application.Factories.Contracts;
 using StudentManagement.Application.Services.Contracts;
-using StudentManagement.Application.Factories.Implementations;
 using StudentManagement.Crosscutting.Models;
 using StudentManagement.Infrastructure.Repositories;
 using System;
@@ -10,18 +9,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.IO.Abstractions;
 
 namespace StudentManagement.Application.Services.Implementations
 {
     public class StudentService : IStudentService
     {   
-        private IRepositoryFactory _repositoryFactory;
+        private readonly IAbstractRepositoryFactory _repositoryFactory;
         private IRepository _repository;
+        private readonly IFileSystem _fileSystem;
 
-        public StudentService(IRepositoryFactory repositoryFactory)
+        public StudentService(IAbstractRepositoryFactory repositoryFactory, IFileSystem fileSystem)
         {
             _repositoryFactory = repositoryFactory;
-            _repository = repositoryFactory.CreateRepository();
+            _repository = repositoryFactory.CreateRepository(Factory.JSON);
+            _fileSystem = fileSystem;
         }
 
         public StudentService(IRepository repository)
@@ -75,20 +77,8 @@ namespace StudentManagement.Application.Services.Implementations
 
         public void SetIRepositoryFactory(Factory factoryType)
         {
-            switch (factoryType)
-            {
-                case Factory.JSON:
-                    _repositoryFactory = new JsonRepositoryFactory();
-                    break;
-                case Factory.XML:
-                    _repositoryFactory = new XmlRepositoryFactory();
-                    break;
-                case Factory.TXT:
-                    _repositoryFactory = new TxtRepositoryFactory();
-                    break;
-            }
 
-            _repository = _repositoryFactory.CreateRepository();
+            _repository = _repositoryFactory.CreateRepository(factoryType);
 
         }
     }

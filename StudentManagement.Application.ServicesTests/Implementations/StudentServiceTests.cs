@@ -38,7 +38,7 @@ namespace StudentManagement.Application.Services.Implementations.Tests
             {
                 Id = 2,
                 Name = "Luis",
-                Surname = "Luis",
+                Surname = "TEST",
                 BirthDate = DateTime.Parse("02/05/1997"),
                 Age = 25
 

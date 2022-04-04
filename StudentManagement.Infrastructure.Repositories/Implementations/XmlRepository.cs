@@ -36,7 +36,7 @@ namespace StudentManagement.Infrastructure.Repositories.Contracts
 
         public Student GetStudentById(int id, string path)
         {
-            return GetAllStudents(path).Where(x => x.Id == id).FirstOrDefault(); ;
+            return GetAllStudents(path).FirstOrDefault(x => x.Id == id);
         }
 
         public bool SaveStudent(Student student, string path)
@@ -44,6 +44,7 @@ namespace StudentManagement.Infrastructure.Repositories.Contracts
             bool inserted = false;
 
             List<Student> students = (List<Student>)GetAllStudents(path);
+            FileStream file = File.Create(path);
             XmlSerializer writer =
                 new XmlSerializer(typeof(List<Student>));
             Utils.DeleteIfExist(new FileInfo(path));
@@ -52,7 +53,7 @@ namespace StudentManagement.Infrastructure.Repositories.Contracts
             if (students.Contains(student))
                 inserted = true;
 
-            FileStream file = File.Create(path);
+            
 
             writer.Serialize(file, students);
             

@@ -26,7 +26,7 @@ namespace StudentManagement.Infrastructure.Repositories.Contracts
 
         public Student GetStudentById(int id, string path)
         {
-            return GetAllStudents(path).Where(x => x.Id == id).FirstOrDefault();
+            return GetAllStudents(path).FirstOrDefault(x => x.Id == id);
         }
 
         public bool SaveStudent(Student student, string path)

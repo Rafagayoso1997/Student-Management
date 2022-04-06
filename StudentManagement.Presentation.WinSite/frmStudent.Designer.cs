@@ -55,6 +55,7 @@
             // comboFile
             // 
             this.comboFile.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.comboFile.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboFile.FormattingEnabled = true;
             this.comboFile.Location = new System.Drawing.Point(18, 25);
             this.comboFile.Name = "comboFile";
@@ -113,7 +114,6 @@
             this.button2.Text = "Update";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
-         
             // 
             // frmStudent
             // 

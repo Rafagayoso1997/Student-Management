@@ -91,9 +91,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\StudentManagement.Application.Factories\StudentManagement.Application.Factories.csproj">
+    <ProjectReference Include="..\StudentManagement.Application.Factories\StudentManagement.Infrastructure.Factories.csproj">
       <Project>{9a46b0a8-2dea-4a59-9249-6a3a4a1efa5c}</Project>
-      <Name>StudentManagement.Application.Factories</Name>
+      <Name>StudentManagement.Infrastructure.Factories</Name>
     </ProjectReference>
     <ProjectReference Include="..\StudentManagement.Application.Services\StudentManagement.Application.Services.csproj">
       <Project>{19a38588-4de5-4fef-ab53-9a8c9caeeb5b}</Project>

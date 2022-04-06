@@ -1,8 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using Serilog;
 using StudentManagement.Application.Services.Implementations;
 using StudentManagement.Application.Services.Unit.Tests.Implementations;
 using StudentManagement.Crosscutting.Models;
+using StudentManagement.Infrastructure.Factories.Contracts;
 using StudentManagement.Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
@@ -14,11 +16,13 @@ using System.Threading.Tasks;
 namespace StudentManagement.Application.Services.Implementations.Tests
 {
     [TestClass()]
-    public class StudentServiceTests
+    public class StudentServiceJsonTests
     {
         private static StudentService _service;
 
         private static Mock<IRepository> mockRepository;
+        private static Mock<IAbstractRepositoryFactory> mockAbstractFactory;
+      
 
         private static Mock<IFileSystem> _fileSystem;
 
@@ -27,11 +31,15 @@ namespace StudentManagement.Application.Services.Implementations.Tests
         [ClassInitialize]
         public static void AssemblyInit(TestContext context)
         {
+           
+
             mockRepository = new Mock<IRepository>();
             
 
             mockRepository.Setup(repository => repository.GetStudentById(2, "")).Returns(UnitFixtures.GetStudentById(2));
+            
             mockRepository.Setup(repository => repository.GetAllStudents("")).Returns(UnitFixtures.GetAllStudents());
+            
             mockRepository.Setup(repository => repository.SaveStudent(new Student(1, "Rafa", "Rafa", DateTime.Now), ""))
                 .Returns(UnitFixtures.SaveStudent(new Student(1,"Rafa","Rafa", DateTime.Now)));
 
@@ -41,7 +49,11 @@ namespace StudentManagement.Application.Services.Implementations.Tests
             mockRepository.Setup(repository => repository.DeleteStudent(new Student(2, "Rafa", "Rafa", DateTime.Parse("02/05/1997")), ""))
                 .Returns(UnitFixtures.UpdateStudent(new Student(2, "Rafa", "Rafa", DateTime.Parse("02/05/1997"))));
 
-            _service = new StudentService(mockRepository.Object);
+            mockAbstractFactory = new Mock<IAbstractRepositoryFactory>();
+            mockAbstractFactory.Setup(factory => factory.CreateRepository(Factory.Json)).Returns(mockRepository.Object);
+
+           
+            _service = new StudentService(mockAbstractFactory.Object);
         }
 
 

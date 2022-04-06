@@ -21,7 +21,7 @@ namespace StudentManagement.Infrastructure.Repositories.Implementations
                 .Descendants("Student")
                 .Select(node => new Student
                 {
-                    Id = int.Parse(node.Element("Id").Value),
+                    Id = long.Parse(node.Element("Id").Value),
                     Name = node.Element("Name").Value,
                     Surname = node.Element("Surname").Value,
                     BirthDate = DateTime.Parse(node.Element("BirthDate").Value),
@@ -44,17 +44,18 @@ namespace StudentManagement.Infrastructure.Repositories.Implementations
             bool inserted = false;
 
             List<Student> students = (List<Student>)GetAllStudents(path);
-            FileStream file = File.Create(path);
+           
             XmlSerializer writer =
                 new XmlSerializer(typeof(List<Student>));
+            
             Utils.DeleteIfExist(new FileInfo(path));
 
             students.Add(student);
             if (students.Contains(student))
                 inserted = true;
 
-            
 
+            FileStream file = File.Create(path);
             writer.Serialize(file, students);
             
             file.Close();

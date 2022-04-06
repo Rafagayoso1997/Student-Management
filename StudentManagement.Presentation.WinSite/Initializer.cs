@@ -5,7 +5,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Serilog;
 using Serilog.Core;
-using StudentManagement.Application.Factories.Contracts;
+using StudentManagement.Infrastructure.Factories.Contracts;
 using StudentManagement.Application.Services.Contracts;
 using StudentManagement.Application.Services.Implementations;
 using StudentManagement.Crosscutting.Models;

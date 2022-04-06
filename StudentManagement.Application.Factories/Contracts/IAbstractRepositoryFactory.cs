@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StudentManagement.Application.Factories.Contracts
+namespace StudentManagement.Infrastructure.Factories.Contracts
 {
     public interface IAbstractRepositoryFactory
     {

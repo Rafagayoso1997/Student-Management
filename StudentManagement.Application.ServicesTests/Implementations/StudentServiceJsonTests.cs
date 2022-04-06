@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using StudentManagement.Application.Factories.Contracts;
+using StudentManagement.Infrastructure.Factories.Contracts;
 using StudentManagement.Crosscutting.Models;
 using StudentManagement.Infrastructure.Repositories;
 using StudentManagement.Infrastructure.Repositories.Implementations;
@@ -15,19 +15,27 @@ using System.Threading.Tasks;
 namespace StudentManagement.Application.Services.Implementations.Tests
 {
     [TestClass()]
-    public class StudentServiceTests
+    public class StudentServiceJsonTests
     {
         private static StudentService _service;
 
         private static string path = @"C:\Users\Rafael Gayoso\OneDrive\Escritorio\students.json";
 
-        [AssemblyInitialize]
+        [ClassInitialize]
         public static void AssemblyInit(TestContext context)
         {
-            _service = new StudentService(new JsonRepository());
+            _service = new StudentService(new FileRepositoryFactory());
         }
+        
+        [TestMethod()]
+        public void GetAllStudentsTest()
+        {
+            int studentCount = _service.GetAllStudents(path).Count();
 
+            int expectedStudents = 10;
 
+            Assert.AreEqual(expectedStudents, studentCount);
+        }
 
         [TestMethod()]
         public void GetStudentByIdTest()
@@ -50,7 +58,7 @@ namespace StudentManagement.Application.Services.Implementations.Tests
         [TestMethod()]
         public void SaveStudentTest()
         {
-            Student student = new Student(17,"Rafa","Rafa", DateTime.Now);
+            Student student = new Student(12,"Rafa","Rafa", DateTime.Now);
 
             bool result = _service.SaveStudent(student, path);
 
@@ -74,7 +82,7 @@ namespace StudentManagement.Application.Services.Implementations.Tests
         [TestMethod()]
         public void DeleteStudentTest()
         {
-            Student student = new Student(17, "Rafa", "Rafa", DateTime.Now);
+            Student student = new Student(12, "Rafa", "Rafa", DateTime.Now);
 
             bool result = _service.DeleteStudent(student, path);
 

@@ -1,5 +1,5 @@
 ﻿
-using StudentManagement.Application.Factories.Contracts;
+using StudentManagement.Infrastructure.Factories.Contracts;
 using StudentManagement.Application.Services.Contracts;
 using StudentManagement.Crosscutting.Models;
 using StudentManagement.Infrastructure.Repositories;
@@ -17,20 +17,15 @@ namespace StudentManagement.Application.Services.Implementations
     {   
         private readonly IAbstractRepositoryFactory _repositoryFactory;
         private IRepository _repository;
-        private readonly IFileSystem _fileSystem;
 
-        public StudentService(IAbstractRepositoryFactory repositoryFactory, IFileSystem fileSystem)
+        public StudentService(IAbstractRepositoryFactory repositoryFactory)
         {
             _repositoryFactory = repositoryFactory;
             _repository = repositoryFactory.CreateRepository(Factory.Json);
-            _fileSystem = fileSystem;
+           
         }
 
-        public StudentService(IRepository repository)
-        {
-            
-            _repository = repository;
-        }
+        
 
         public IEnumerable<Student> GetAllStudents(string path)
         {

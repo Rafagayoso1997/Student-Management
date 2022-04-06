@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentManagement.Crosscutt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentManagement.Infrastructure.Repositories", "StudentManagement.Infrastructure.Repositories\StudentManagement.Infrastructure.Repositories.csproj", "{18EFA8DA-30EA-434B-818A-C3ADC084D75D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentManagement.Application.Factories", "StudentManagement.Application.Factories\StudentManagement.Application.Factories.csproj", "{9A46B0A8-2DEA-4A59-9249-6A3A4A1EFA5C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentManagement.Infrastructure.Factories", "StudentManagement.Application.Factories\StudentManagement.Infrastructure.Factories.csproj", "{9A46B0A8-2DEA-4A59-9249-6A3A4A1EFA5C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentManagement.Application.Integration.ServicesTests", "StudentManagement.Application.ServicesTests\StudentManagement.Application.Integration.ServicesTests.csproj", "{A3B51EF3-1EC6-4EC9-B788-423C34215426}"
 EndProject
